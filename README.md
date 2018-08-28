@@ -1,12 +1,18 @@
 # Spree Price
 
-heavily inspired by (spree-contrib/spree_price_book)[https://github.com/spree-contrib/spree_price_books].
+heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-contrib/spree_price_books).
 1. Support multiple store price
 2. Support multiple type of prices (e.g. sales price, marked price, manufacturer's suggested retail price
 3. Support price book. Price book can be prioritized at store.
 4. Auto adjust prices according to exchange rate. 
-5. If price is not set, find the most relevant price. It will find the price book in the same store with lower priority price book first. If the price is not available in every price book of the store, it will find the parent price book * the currency exchange ordered by the price book priority. If the price is also not available in every parent price book, it will find the price book with different price type (Sales price / marked price) ordered by the priority of the price type. If it still cannot find the price, it will return nil. 
-6. When the price is set manually, the price will not be populated. 
+5. Price is found by the following order.
+  - Manual set price
+  - Price book with higher priority in the same store
+  - Parent price book with higher priority in the same store * currency exchange
+  - Price book with higher priority of other price type 
+  - Parent price book with higher priority of other price type in the same store * currency exchange
+  
+6. The price will not be populated. It will be calculated on the fly if it is not set manually. 
 
 ### Installation
 Add spree_price_books to your Gemfile:
