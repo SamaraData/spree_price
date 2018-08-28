@@ -6,11 +6,11 @@ heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-co
 3. Support price book. Price book can be prioritized at store.
 4. Auto adjust prices according to exchange rate. 
 5. Price is found by the following order.
-  - Manual set price
-  - Price book with higher priority in the same store
-  - Parent price book with higher priority in the same store * currency exchange
-  - Price book with higher priority of other price type 
-  - Parent price book with higher priority of other price type in the same store * currency exchange
+    - Manual set price
+    - Price book with higher priority in the same store
+    - Parent price book with higher priority in the same store * currency exchange
+    - Price book with higher priority of other price type 
+    - Parent price book with higher priority of other price type in the same store * currency exchange
   
 6. The price will not be populated. It will be calculated on the fly if it is not set manually. 
 
