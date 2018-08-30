@@ -50,7 +50,7 @@ namespace :spree_price do
     Spree::Config[:supported_currencies].split(',').map do |currency|
       price_book = Spree::PriceBook.where(currency: currency).first
       if price_book
-        Spree::Price.where(price_book_id: nil, currency: currency)
+        Spree::Price.unscoped.where(price_book_id: nil, currency: currency)
           .update_all(price_book_id: price_book.id)
       end
     end

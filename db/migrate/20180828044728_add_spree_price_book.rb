@@ -41,7 +41,7 @@ class AddSpreePriceBook < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :spree_price_type do |t|
+    create_table :spree_price_types do |t|
       t.string :name
       t.string :code
       t.integer :priority, default: 0, null: false, index: true
