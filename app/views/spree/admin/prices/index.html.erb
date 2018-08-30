@@ -1,0 +1,39 @@
+<%= render 'spree/admin/shared/product_tabs', current: 'Prices' %>
+
+<div class='row'>
+  <%= select_tag(:store, options_for_select(stores_options, selected: @store.try(:id)),
+        include_blank: false, multiple: false,
+        class: 'select2 col-md-4', id: 'select_variant_prices_store')
+  %>
+
+  <%= select_tag(:price_type,
+        options_for_select(price_types_options, selected: @price_type.try(:id)),
+        include_blank: false, multiple: false,
+        class: 'select2 col-md-4', id: 'select_variant_prices_price_type')
+  %>
+
+  <%= select_tag(:role,
+        options_for_select(roles_options, selected: @role.try(:id)),
+        include_blank: false, multiple: false,
+        class: 'select2 col-md-4', id: 'select_variant_prices_role')
+  %>
+</div>
+
+<div class='row'>
+  <%= form_tag variant_prices_admin_product_prices_url(@product) do %>
+    <%= render 'variant_prices', variant: @product.master %>
+    <% @product.variants.each do |variant| %>
+      <%= render 'variant_prices', variant: variant %>
+    <% end %>
+
+    <%= hidden_field_tag :store_id, @store.try(:id) %>
+    <%= hidden_field_tag :price_type_id, @price_type.try(:id) %>
+    <%= hidden_field_tag :role_id, @role.try(:id) %>
+
+    <div class="form-actions" data-hook="buttons">
+      <%= button Spree.t('actions.update'), 'update' %>
+      <span class="or"><%= Spree.t(:or) %></span>
+      <%= button_link_to Spree.t('actions.cancel'), admin_product_path(@product), icon: 'delete' %>
+    </div>
+  <% end %>
+</div>

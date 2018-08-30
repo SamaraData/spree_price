@@ -1,0 +1,37 @@
+<% unless prices.empty? %>
+  <%= form_for [:admin, @price_book], url: { action: 'update_price' } do |f| %>
+    <div class='row'>
+      <table class="col-xs-12 table table-striped" id="listing_price_book_products">
+        <colgroup>
+          <col style="width: 25%">
+          <col style="width: 50%">
+          <col style="width: 25%">
+        </colgroup>
+        <thead>
+          <th><%= Spree.t(:name) %></th>
+          <th><%= Spree.t(:sku) %></th>
+          <th><%= Spree.t(:price) %></th>
+        </thead>
+        <tbody>
+          <% prices.each do |price| %>
+            <%= f.fields_for :prices_attributes do |price_form| %>
+              <% render 'price', f: price_form, price: price %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6"><%= paginate prices %></div>
+      <div class="col-xs-12 col-md-6 text-right">
+        <span class="input-group-btn">
+          <%= button Spree.t(:update), 'update', 'submit', class: "price_book_prices_update" %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/variant')) %>.
+  </div>
+<% end %>

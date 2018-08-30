@@ -1,0 +1,7 @@
+require 'spree_core'
+require 'spree_extension'
+require 'spree_price/engine'
+require 'spree_price/version'
+require 'spree_request_store'
+require 'validates_timeliness'
+require 'money/bank/open_exchange_rates_bank'

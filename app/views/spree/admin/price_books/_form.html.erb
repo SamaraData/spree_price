@@ -1,0 +1,81 @@
+<div data-hook="admin_price_book_form_fields">
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.field_container :name do %>
+        <%= f.label :name %> <span class="required">*</span><br />
+        <%= f.text_field :name, class: "form-control" %>
+        <%= f.error_message_on :name %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :currency, Spree.t(:choose_currency) %> <span class="required">*</span><br />
+      <%= f.select(:currency, supported_currencies_options,
+        { include_blank: false, selected: f.object.currency || Spree::Config[:currency] },
+        { multiple: false, class: 'select2' })
+      %>
+      <%= f.error_message_on :currency %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :price_type, Spree.t(:price_type) %> <span class="required">*</span><br />
+      <%= f.select(:price_type_id, price_types_options,
+        { include_blank: true, selected: f.object.price_type_id },
+        { multiple: false, class: 'select2' })
+      %>
+      <%= f.error_message_on :price_type_id %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.field_container :active_from do %>
+        <%= f.label :active_from %> <span class="required">*</span><br />
+        <%= f.text_field :active_from, class: 'form-control datepicker datepicker-from' %>
+        <%= f.error_message_on :active_from %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.field_container :active_to do %>
+        <%= f.label :active_to %> <span class="required">*</span><br />
+        <%= f.text_field :active_to, class: 'form-control datepicker datepicker-to' %>
+        <%= f.error_message_on :active_to %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.field_container :roles do %>
+        <%= f.label :roles %><br />
+        <%= f.select(:role_ids, Spree::Role.all.map do |role|
+              [role.name, role.id]
+            end, { include_blank: true }, { multiple: true, class: 'select2' }) %>
+        <%= f.hidden_field :"role_ids[]", value: "" %>
+        <%= f.error_message_on :role_ids %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.field_container :parent do %>
+        <%= f.label :parent %> <span class="required">*</span><br />
+        <%= f.select(:parent_id, Spree::PriceBook.all.map do |price_book|
+            [price_book.name, price_book.id]
+          end, { include_blank: true }, { multiple: false, class: 'select2' }) %>
+        <%= f.error_message_on :parent %>
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <%= f.field_container :price_adjustment_factor do %>
+        <%= f.label :price_adjustment_factor %> <span class="required">*</span><br />
+        <%= f.text_field :price_adjustment_factor, class: 'form-control' %>
+        <%= f.error_message_on :price_adjustment_factor %>
+      <% end %>
+    </div>
+  </div>
+</div>

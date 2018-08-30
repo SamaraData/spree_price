@@ -1,6 +1,6 @@
 # Spree Price
 
-heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-contrib/spree_price_books).
+Heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-contrib/spree_price_books).
 1. Support multiple store price
 2. Support multiple type of prices (e.g. sales price, marked price, manufacturer's suggested retail price
 3. Support price book. Price book can be prioritized at store.
@@ -33,11 +33,14 @@ Once installed you can seed default currency exchange rates via open exchange ra
 Get your app id from https://openexchangerates.org/signup
 
 Add open_exchange_rate.rb to config/initializers
-```
+```ruby
 Rails.application.config.openExchangeRate = {
   appId: 'YOUR APP ID HERE',
 }
-bundle exec rake price_books:currency_rates
+```
+
+```shell
+bundle exec rake spree_price:currency_rates
 ```
 
 ### Testing
@@ -53,10 +56,10 @@ bundle exec rake
 When testing your applications integration with this extension you may use it's factories. Simply add this require statement to your spec_helper:
 
 ```
-require 'spree_price_books/factories'
+require 'spree_price/factories'
 ```
 
 ### Credit
-(spree-contrib/spree_price_book)[https://github.com/spree-contrib/spree_price_books].
+[spree-contrib/spree_price_book](https://github.com/spree-contrib/spree_price_books)
 
 Copyright (c) 2018 EONIQ (HK) LIMITED, released under the New BSD License

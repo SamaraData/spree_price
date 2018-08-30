@@ -1,0 +1,57 @@
+<div class="col-md-12">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<h3 class="panel-title">
+	  		<span class="sku"><%= variant.sku %></span>
+
+	  		<span class="text-muted pull-right">
+          <% if variant.is_master? %>
+            <%= Spree.t(:master) %>
+          <% elsif variant.options_text.blank? %>
+            <%= Spree.t(:variant) %>
+          <% else %>
+            <%= variant.options_text %>
+          <% end %>
+	  		</span>
+	  	</h3>
+	  </div>
+
+	  <div class="panel-body no-padding-bottom">
+		  <% supported_currencies.each do |currency| %>
+		    <% code  = currency.iso_code %>
+		    <% price = variant.price_in_price_book(code, @store, [@role], @price_type) %>
+		    <div class="form-group">
+          <div class="row">
+            <%= label_tag "vp[#{variant.id}][#{code}]", code, class: 'control-label col-md-2' %>
+            <div class="col-md-6">
+              <%= text_field_tag(
+                    "vp[#{variant.id}][#{code}]",
+                    (price && price.price ? price.display_amount.money : ''),
+                    class: 'form-control')
+              %>
+            </div>
+            <div class="col-md-4">
+              <% if price %>
+                <%= link_to price.price_book.try(:name), admin_price_book_url(price.price_book) %>
+              <% else %>
+                <% default_price = variant.price_in(code, @store, [@role], @price_type) %>
+                <% if default_price %>
+                  <blockquote>
+                    <%= default_price.display_amount.to_html %>
+                    <footer>
+                      Ref: 
+                      <%= link_to(
+                            default_price.price_book.try(:name),
+                            admin_price_book_url(default_price.price_book))
+                      %>
+                    </footer>
+                  </blockquote>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+		    </div>
+		  <% end %>
+	  </div>
+	</div>
+</div>

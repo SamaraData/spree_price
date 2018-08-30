@@ -1,0 +1,14 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:new_price_type) %>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @price_type } %>
+
+<div id="price_type_form_wrapper">
+  <%= form_for [:admin, @price_type] do |f| %>
+    <fieldset>
+      <%= render :partial => 'form', :locals => { :f => f } %>
+      <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+    </fieldset>
+  <% end %>
+</div>

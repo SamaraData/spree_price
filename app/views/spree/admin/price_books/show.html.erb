@@ -1,0 +1,39 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:price_book) %>
+  <span><%= @price_book.name %></span>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="edit_pb_link">
+    <%= button_link_to Spree.t(:back_to_price_books_list),
+          spree.admin_price_books_path, 
+          :icon => 'arrow-left' 
+    %>
+  </span>
+  <span id="edit_pb_link">
+    <%= button_link_to Spree.t(:edit_price_book),
+          spree.edit_admin_price_book_url,
+          { :icon => 'edit', :id => 'edit_price_book_link' } 
+    %>
+  </span>
+  <hr />
+  <span id="load_pb_link">
+    <%= button_link_to Spree.t(:load_missing_from_parent),
+      spree.load_from_parent_admin_price_book_url,
+      { :icon => 'cloud-download', :id => 'load_from_parent_price_book_link' } %>
+  </span>
+  <span id="force_load_pb_link">
+    <%= button_link_to Spree.t(:refresh_all_from_parent),
+      spree.load_from_parent_admin_price_book_url(force_update: true),
+      { :icon => 'refresh', :id => 'force_load_from_parent_price_book_link' } %>
+  </span>
+<% end %>
+
+<%= render 'price_book', price_book: @price_book %>
+<br />
+
+<h3><%= Spree.t(:prices) %></h3><hr />
+<%= render 'price_list', prices: @prices %>
+
+<h3><%= Spree.t(:add_or_update_variant_to_price_book) %></h3><hr />
+<%= render 'add_price', price_book: @price_book %>

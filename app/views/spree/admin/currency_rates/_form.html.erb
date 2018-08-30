@@ -1,0 +1,29 @@
+<div class='row'>
+  <div data-hook="admin_currency_rate_form_fields">
+    <div class="col-xs-12">
+      <fieldset data-hook="currency_rates">
+        <div class="col-xs-6">
+          <div data-hook="base_currency" class="field">
+            <%= f.label :base_currency %>
+            <%= f.text_field :base_currency, class: 'form-control' %>
+          </div>
+          <div data-hook="currency" class="field">
+            <%= f.label :currency, Spree.t(:currency) %>
+            <%= f.text_field :currency, class: 'form-control' %>
+          </div>
+          <div data-hook="exchange_rate" class="field">
+            <%= f.label :exchange_rate %>
+            <%= f.text_field :exchange_rate, :class => 'form-control' %>
+            <br/>
+          </div>
+          <% if f.object.default? || Spree::CurrencyRate.default.new_record? %>
+            <div data-hook="default_rate" class="field">
+              <%= f.check_box :default %>
+              <%= f.label :default, Spree.t(:default) %>
+            </div>
+          <% end %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>

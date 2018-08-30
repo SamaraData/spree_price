@@ -1,0 +1,34 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    attributes:
+      spree/currency_rate:
+        base_currency: Base Currency
+        currency: Currency
+        default: Default
+        exchange_rate: Exchange Rate
+      spree/price_book:
+        currency: Currency
+        default: Default
+        priority: Priority
+        price_adjustment_factor: Factor
+    errors:
+      models:
+        spree/price:
+          attributes:
+            currency:
+              match_price_book: Must match price book currency.
+    models:
+      spree/currency_rate:
+        one: Currency Rate
+        other: Currency Rates
+      spree/price_book:
+        one: Price Book
+        other: Price Books
+  spree:
+    notice_messages:
+      currency_rate_fetched: "Currency rate updated."
+      price_book_loaded_from_parent: "Price book loaded from parent."
+      variant_price_updated: "Variant prices updated."

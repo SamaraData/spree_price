@@ -1,0 +1,12 @@
+<tr>
+  <td class="align-center">
+    <%= link_to price.variant.try(:name), admin_product_variants_url(price.variant.product) %>
+  </td>
+  <td><%= price.variant.try(:sku_and_options_text) %></td>
+  <td>
+    <%= f.text_field(:amount, value: price.amount, 
+          class: 'form-control', index: price.id) %>
+    <%= f.hidden_field(:id, value: price.id, 
+          class: 'form-control', index: price.id) %>
+  </td>
+</tr>

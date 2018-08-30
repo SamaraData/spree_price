@@ -1,0 +1,51 @@
+<% content_for :page_title do %>
+  <%= Spree::PriceType.model_name.human(:count => 2) %>
+<% end %>
+
+<% content_for :page_actions do %>
+    <%= link_to_with_icon('add',
+      Spree.t(:new_price_type),
+      new_admin_price_type_url,
+      { :class => 'btn btn-success', :id => 'new_price_type_link' }
+    )%>
+<% end %>
+
+<% if @price_types.any? %>
+<table
+  class="table"
+  id="listing_price_types"
+>
+  <colgroup>
+    <col style="width: 40%">
+    <col style="width: 20%">
+    <col style="width: 20%">
+    <col style="width: 20%">
+  </colgroup>
+  <thead>
+    <tr data-hook="option_header">
+      <th><%= Spree::PriceType.human_attribute_name(:name) %></th>
+      <th><%= Spree::PriceType.human_attribute_name(:code) %></th>
+      <th><%= Spree::PriceType.human_attribute_name(:default) %></th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @price_types.each do |price_type| %>
+      <tr class="spree_price_type">
+        <td class="align-center"><%= price_type.name %></td>
+        <td class="align-center"><%= price_type.code %></td>
+        <td class="align-center"><%= price_type.default? %></td>
+        <td class="actions">
+          <%= link_to_edit(price_type, :class => 'admin_edit_price_type', :no_text => true) %>
+          <%= link_to_delete(price_type, :no_text => true) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+  <div class="col-md-12">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/price_type')) %>,
+    <%= link_to Spree.t(:add_one), spree.new_admin_price_type_path %>!
+  </div>
+<% end %>

@@ -1,0 +1,82 @@
+<script type='text/template' id='price_book_variant_template'>
+  {{#each variants}}
+    <tr>
+      <td>{{name}}</td>
+      <td class='text-center'>{{price}}</td>
+      <td class='actions actions-1 text-center'>
+        <button
+          class='icon_link btn btn-danger btn-sm price_book_remove_variant'
+          data-variant-id='{{id}}'
+        >
+          <span class='icon icon-delete' data-variant-id='{{id}}'></span>
+        </button>
+        <input
+          type='hidden'
+          id='price_book[prices_attributes][][variant_id]'
+          name='price_book[prices_attributes][][variant_id]'
+          value='{{id}}'
+        />
+        <input
+          type='hidden'
+          id='price_book[prices_attributes][][amount]'
+          name='price_book[prices_attributes][][amount]'
+          value='{{price}}'
+        />
+      </td>
+    </tr>
+  {{/each}}
+</script>
+
+<%= form_for [:admin, price_book], url: { action: 'add_price' } do |f| %>
+  <div class="panel panel-default" id="add-variant-to-price-book">
+    <div class="panel-heading">
+      <h1 class="panel-title">
+        <%= Spree.t(:add_variant) %>
+      </h1>
+    </div>
+
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group" id="price_book_variant_id_field">
+            <%= label_tag 'variant_id', Spree.t(:variant) %>
+            <%= hidden_field_tag 'price_book_variant', {}, { class: 'fullwidth-input' } %>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="form-group" id="price_book_variant_price_field">
+            <%= label_tag :price_book_variant_price, Spree.t(:price) %>
+            <div class="input-group">
+              <%= number_field_tag :price_book_variant_price, nil, min: 0, step: 0.01, class: 'form-control' %>
+              <span class="input-group-btn">
+                <%= button Spree.t(:add), 'plus', 'submit', class: "price_book_add_variant" %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/variant')) %>.
+  </div>
+
+  <div id="price_book-variants-table" style="display:none">
+    <table class="table table-bordered sortable">
+      <thead data-hook="price_book_variants_header">
+        <th><%= Spree.t(:name) %></th>
+        <th class="text-center"><%= Spree.t(:price) %></th>
+        <th class="actions"></th>
+      </thead>
+      <tbody id="price_book_variants_tbody">
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="form-actions" data-hook="buttons">
+    <%= button Spree.t(:push_update), 'cloud-upload price_book_new_push' %>
+  </div>
+<% end %>
