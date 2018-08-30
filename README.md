@@ -33,7 +33,7 @@ Update the price from product page with store, price type and role filter. If th
 Add spree_price_books to your Gemfile:
 
 ```shell
-gem 'spree_price_books', github: 'EONIQ/spree_price'
+gem 'spree_price', github: 'EONIQ/spree_price'
 ```
 
 Bundle your dependencies and run the installation generator:
