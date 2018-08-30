@@ -8,11 +8,13 @@ Heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-co
 5. Price is found by the following order.
     - Manual set price
     - Price book with higher priority in the same store
-    - Parent price book with higher priority in the same store * currency exchange
-    - Price book with higher priority of other price type 
-    - Parent price book with higher priority of other price type in the same store * currency exchange
-  
-6. The price will not be populated. It will be calculated on the fly if it is not set manually. 
+    - First price matching the currency and price type
+    - First price matching the currency
+    TODO: Find the price from parent price type without sacrificing the performance too much
+
+6. The price will not be populated from parent price type by default. You can either fill nil prices from parent price book with adjustment factor or refresh all prices from parent price book in admin panel.
+
+7. Line item and order will save all prices for each price type.
 
 ### Installation
 Add spree_price_books to your Gemfile:
