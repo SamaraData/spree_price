@@ -9,9 +9,16 @@ namespace :spree_price do
 
     # Initialize price type
     if Spree::PriceType.count == 0
-      Spree::PriceType.create!(name: 'Selling Price', code: 'selling', priority: 0)
-      Spree::PriceType.create!(name: 'Marked Price', code: 'marked', priority: 1)
-      Spree::PriceType.create!(name: "Manufacturer's Suggested Retail Price", code: 'msrp', priority: 2)
+      Spree::PriceType.create!(name: 'Selling Price', code: 'selling', default: true)
+      Spree::PriceType.create!(name: 'Marked Price', code: 'marked')
+      Spree::PriceType.create!(name: "Manufacturer's Suggested Retail Price", code: 'msrp')
+    end
+
+    # Try initializing default role
+    role = Spree::Role.where(name: 'user').first
+    if role
+      role.default = true
+      role.save
     end
 
     # Initialize default price book for every currency
