@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.homepage  = 'https://github.com/EONIQ/spree_price'
   s.license = 'BSD-3-Clause'
 
-  s.files        = Dir['README.md', 'lib/**/*', 'app/**/*']
+  s.files        = Dir['README.md', 'lib/**/*', 'app/**/*', 'config/**/*', 'db/**/*']
   s.require_path = 'lib'
   s.requirements << 'none'
 
