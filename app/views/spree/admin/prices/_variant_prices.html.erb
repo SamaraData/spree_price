@@ -18,7 +18,7 @@
 
 	  <div class="panel-body no-padding-bottom">
 		  <% supported_currencies.each do |currency| %>
-		    <% code  = currency.iso_code %>
+		    <% code  = currency.iso_code.upcase %>
 		    <% price = variant.price_in_price_book(code, @store, [@role], @price_type) %>
 		    <div class="form-group">
           <div class="row">

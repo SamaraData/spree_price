@@ -32,7 +32,7 @@ Spree::Price.class_eval do
   }
 
   def ensure_proper_currency
-    unless currency == price_book.currency
+    if price_book && currency != price_book.currency
       errors.add(:currency, :match_price_book)
     end
   end

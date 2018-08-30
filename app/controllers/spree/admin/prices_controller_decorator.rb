@@ -15,25 +15,21 @@ Spree::Admin::PricesController.class_eval do
         if amount.present?
           price_book = @store
             .price_books
-            .by_currency(currency)
+            .by_currency(currency.upcase)
             .by_price_type(@price_type.try(:id))
             .by_roles([@role.try(:id)])
-            .first 
+            .first
           price_book = price_book || Spree::PriceBook
             .by_currency(currency)
             .by_price_type(@price_type.try(:id))
             .first
-          
-          puts 'price_book.inspect'
-          puts price_book.inspect
-          puts variant_id
+
           price = Spree::Price.find_or_initialize_by(
-            currency: currency,
+            currency: currency.upcase,
             variant_id: variant_id,
             price_book_id: price_book.try(:id)
           )
 
-          puts price.inspect
           price.amount = amount.to_f
           price.save!
         end
