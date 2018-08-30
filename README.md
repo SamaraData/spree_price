@@ -18,13 +18,13 @@ Heavily inspired by [spree-contrib/spree_price_book](https://github.com/spree-co
 
 ### Usage
 Create your own price type
-![Price Type](/docs/price-type.png?raw=true "Price Type")
+![Price Type](/docs/price-type-1.png?raw=true "Price Type")
 
 Create your own price book for each currency, price type, store, user roles
-![Price Book](/docs/price-book.png?raw=true "Price Book")
+![Price Book](/docs/price-book-1.png?raw=true "Price Book")
 
 You can update the prices in price book from parent price book, either filling nil prices from parent price book with adjustment factor or refreshing all prices in price book.
-![Price Book](/docs/price-book-details.png?raw=true "Price Book")
+![Price Book](/docs/price-book-details-1.png?raw=true "Price Book")
 
 Update the price from product page with store, price type and role filter. If the price is not set manually, it will show you the reference price. 
 ![Variant Prices](/docs/variant-prices.png?raw=true "Variant Prices")
