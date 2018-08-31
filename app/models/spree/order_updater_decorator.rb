@@ -3,7 +3,7 @@ Spree::OrderUpdater.class_eval do
     Spree::PriceType.all.each do |price_type|
       order_price = order.price_by_price_type(price_type)
       order_price.amount = line_items.reduce(0) do |sum, line_item|
-        sum + (line_item.variant_price_by_price_type(price_type, order.currency).amount * line_item.quantity)
+        sum + (line_item.line_item_price_by_price_type(price_type).amount * line_item.quantity)
       end
       order_price.save!
     end
