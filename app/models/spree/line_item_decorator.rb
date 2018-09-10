@@ -21,7 +21,7 @@ Spree::LineItem.class_eval do
     line_item_price = line_item_prices.find do |line_item_price|
       line_item_price.price_type_id == price_type.id
     end
-    line_item_price || line_item_prices.build({ price_type_id: price_type.id })
+    line_item_price || line_item_prices.build({ price_type_id: price_type.id, amount: variant_price_by_price_type(price_type) })
   end
 
   def default_line_item_price

@@ -1,5 +1,10 @@
 Spree::OrderUpdater.class_eval do
   def update_prices
+    line_items.each do |line_item|
+      line_item.update_price
+      line_item.save!
+    end
+
     Spree::PriceType.all.each do |price_type|
       order_price = order.price_by_price_type(price_type)
       order_price.amount = line_items.reduce(0) do |sum, line_item|

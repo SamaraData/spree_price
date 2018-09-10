@@ -5,8 +5,8 @@
   </colgroup>
   <tbody>
     <tr><td><%= Spree.t(:currency) %></td><td><%= price_book.currency %></td></tr>
-    <tr><td><%= Spree.t(:active_from) %></td><td><%= I18n.l price_book.active_from %></td></tr>
-    <tr><td><%= Spree.t(:active_to) %></td><td><%= I18n.l price_book.active_to %></td></tr>
+    <tr><td><%= Spree.t(:active_from) %></td><td><%= price_book.active_from ? I18n.l(price_book.active_from) : '--' %></td></tr>
+    <tr><td><%= Spree.t(:active_to) %></td><td><%= price_book.active_to ? I18n.l(price_book.active_to) : '--' %></td></tr>
     <tr><td><%= Spree.t(:price_adjustment_factor) %></td><td><%= price_book.price_adjustment_factor %></td></tr>
     <tr><td><%= Spree.t(:parent) %></td><td><%= price_book.parent.try(:name) || '--' %></td></tr>
     <tr><td><%= Spree.t(:price_type) %></td><td><%= price_book.price_type.try(:name) %></td></tr>

@@ -24,7 +24,7 @@ Spree::Variant.class_eval do
   )
     price_book_price = price_in_price_book(currency, store, roles, price_type)
 
-    logger.warn("Variant #{sku} price cannot be found in store #{store.try(:code)} "\
+    logger.warn("Variant #{sku} price #{price_type.try(:name)} cannot be found in store #{store.try(:code)} "\
       "in #{currency} with roles #{roles.try(:compact).try(:flat_map, &:name)}") if price_book_price.nil?
 
     price_book_price ||

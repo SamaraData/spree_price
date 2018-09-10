@@ -10,7 +10,7 @@ module SpreePrice
   module VERSION
     MAJOR = 3
     MINOR = 1
-    TINY  = 8
+    TINY  = 16
 
     STRING = [MAJOR, MINOR, TINY].compact.join('.')
   end
