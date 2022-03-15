@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 3.1.0'
+  s.add_dependency 'spree_core'
   s.add_dependency 'money-open-exchange-rates', '1.2.0'
   s.add_dependency 'validates_timeliness', '~> 3.0'
   s.add_dependency 'spree_request_store'
