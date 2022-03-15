@@ -1,6 +1,6 @@
 Spree::Variant.class_eval do
-  has_many :price_books, -> { active }, through: :prices
   has_many :prices, dependent: :destroy, inverse_of: :variant
+  has_many :price_books, -> { active }, through: :prices
 
   def price_in_price_book(
     currency = Spree::Store.current_currency,
