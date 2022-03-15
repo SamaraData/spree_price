@@ -55,7 +55,7 @@ class Spree::PriceBook < Spree::Base
   end
 
   def active?
-    active_from <= Time.zone.now && (active_to.nil? || active_to >= Time.zone.now)
+    (active_from.nil? || active_from <= Time.zone.now) && (active_to.nil? || active_to >= Time.zone.now)
   end
 
   def load_prices_from_parent(force_update = false)
